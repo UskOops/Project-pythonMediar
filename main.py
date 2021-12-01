@@ -14,7 +14,7 @@ bucket = storage.Bucket(storage_client, bucket_name)
 
 blobs = list(storage_client.list_blobs(bucket, prefix="stura")) #list client and search for "stura" in gcp
 for blob in blobs:
-    if blob.name.endswith(".json"):
+    if blob.name.endswith(".json"): #search all archive ends with ".json"
         print(blob.name)
         filename = os.path.join("/temp",blob.name.replace("/","%%")) 
         blob.download_to_filename(filename)

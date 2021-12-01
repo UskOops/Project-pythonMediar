@@ -12,13 +12,13 @@ bucket_name = "mediar-parameters"
 
 bucket = storage.Bucket(storage_client, bucket_name)
 
-blobs = list(storage_client.list_blobs(bucket, prefix="stura"))
+blobs = list(storage_client.list_blobs(bucket, prefix="stura")) #list client and search for "stura" in gcp
 for blob in blobs:
     if blob.name.endswith(".json"):
         print(blob.name)
         filename = os.path.join("/temp",blob.name.replace("/","%%")) 
         blob.download_to_filename(filename)
-        with open(filename) as yuri:
+        with open(filename) as yuri: #yuri is a exemple name
             json_data = json.load(yuri)
             for roi in json_data['shapes']:
                 if roi['attributes'][0]['value'] != 'crop':
